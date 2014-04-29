@@ -3,8 +3,8 @@
 <html lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
-        <title>Bootply.com - 3 Carousel Layout (BS 3)</title>
-        <meta name="generator" content="Bootply" />
+        <title>C-Nutra</title>
+        <meta name="generator" content="C-Nutra" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
         
@@ -12,7 +12,7 @@
           <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
-
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 
 
@@ -45,7 +45,26 @@ body {
   z-index: 10;
 }
 
+.navbar-inverse {
+  background-color: #3498db;
+  border-color: #2980b9;
+}
 
+.navbar-inverse .navbar-brand {
+  color: white;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
+  background-color: #2980b9;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-inverse .navbar-toggle {
+  border-color: white;
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -180,10 +199,12 @@ body {
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Inicio</a></li>
-            <li><a href="http://www.bootply.com" target="ext">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="http://www.bootply.com" target="ext">Alimentos</a></li>
+            <li><a href="#contact">Encuestas</a></li>
+            <li><a href="#contact">Recetas</a></li>
+            <li><a href="#contact">Contacto</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accion <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
@@ -193,6 +214,9 @@ body {
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" style="margin-right:0;">
+            <li id=""><a href="#">Entrar</a></li>
           </ul>
         </div>
 
@@ -225,8 +249,8 @@ body {
       <img src="{% static 'img/collage.jpg' %}" class="img-responsive">
       <div class="container">
         <div class="carousel-caption">
-          <h1>Changes to the Grid</h1>
-          <p>Bootstrap 3 still features a 12-column grid, but many of the CSS class names have completely changed.</p>
+          <h1>Lorem ipsum</h1>
+          <p>Curabitur semper volutpat semper. Nam magna dolor, aliquam sit amet fringilla at, vestibulum vitae nisi.</p>
           <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
         </div>
       </div>
@@ -235,9 +259,9 @@ body {
       <img src="http://placehold.it/1500X500" class="img-responsive">
       <div class="container">
         <div class="carousel-caption">
-          <h1>Percentage-based sizing</h1>
-          <p>With "mobile-first" there is now only one percentage-based grid.</p>
-          <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
+          <h1>Lorem ipsum</h1>
+          <p>Curabitur semper volutpat semper. Nam magna dolor, aliquam sit amet fringilla at, vestibulum vitae nisi.</p>
+          <p><a class="btn btn-large btn-primary" href="#">Blahblahy</a></p>
         </div>
       </div>
     </div>
@@ -263,21 +287,21 @@ body {
   <div class="row">
     <div class="col-md-4 text-center">
       <img class="img-circle" src="http://placehold.it/140x140">
-      <h2>Mobile-first</h2>
-      <p>Tablets, phones, laptops. The new 3 promises to be mobile friendly from the start.</p>
-      <p><a class="btn btn-default" href="#">View details »</a></p>
+      <h2>Alimentos</h2>
+      <p>Curabitur semper volutpat semper. Nam magna dolor, aliquam sit amet fringilla at, vestibulum vitae nisi.</p>
+      <p><a class="btn btn-default" href="#">Ver detalles »</a></p>
     </div>
     <div class="col-md-4 text-center">
       <img class="img-circle" src="http://placehold.it/140x140">
-      <h2>One Fluid Grid</h2>
-      <p>There is now just one percentage-based grid for Bootstrap 3. Customize for fixed widths.</p>
-      <p><a class="btn btn-default" href="#">View details »</a></p>
+      <h2>Encuestas</h2>
+      <p>Nam magna dolor, aliquam sit amet fringilla at, vestibulum vitae nisi.</p>
+      <p><a class="btn btn-default" href="#">Ver detalles »</a></p>
     </div>
     <div class="col-md-4 text-center">
       <img class="img-circle" src="http://placehold.it/140x140">
-      <h2>LESS is More</h2>
-      <p>Improved support for mixins make the new Bootstrap 3 easier to customize.</p>
-      <p><a class="btn btn-default" href="#">View details »</a></p>
+      <h2>Recetas</h2>
+      <p>Nam magna dolor, aliquam sit amet fringilla at, vestibulum vitae nisi.</p>
+      <p><a class="btn btn-default" href="#">Ver detalles »</a></p>
     </div>
   </div><!-- /.row -->
 
@@ -288,24 +312,24 @@ body {
 
   <div class="featurette">
     <img class="featurette-image img-circle pull-right" src="http://placehold.it/512">
-    <h2 class="featurette-heading">Responsive Design. <span class="text-muted">It'll blow your mind.</span></h2>
-    <p class="lead">In simple terms, a responsive web design figures out what resolution of device it's being served on. Flexible grids then size correctly to fit the screen.</p>
+    <h2 class="featurette-heading">Lorem ipsum dolor sit amet. <span class="text-muted">Consectetur adipiscing elit.</span></h2>
+    <p class="lead">Aenean varius purus ac neque rutrum laoreet. Suspendisse potenti. Ut aliquam tortor et volutpat suscipit. Integer sagittis urna at nisl tincidunt, eget rutrum justo venenatis.</p>
   </div>
 
   <hr class="featurette-divider">
 
   <div class="featurette">
     <img class="featurette-image img-circle pull-left" src="http://placehold.it/512">
-    <h2 class="featurette-heading">Smaller Footprint. <span class="text-muted">Lightweight.</span></h2>
-    <p class="lead">The new Bootstrap 3 promises to be a smaller build. The separate Bootstrap base and responsive.css files have now been merged into one. There is no more fixed grid, only fluid.</p>
+    <h2 class="featurette-heading">Lorem ipsum dolor sit amet. <span class="text-muted">Consectetur adipiscing elit.</span></h2>
+    <p class="lead">Aenean varius purus ac neque rutrum laoreet. Suspendisse potenti. Ut aliquam tortor et volutpat suscipit. Integer sagittis urna at nisl tincidunt, eget rutrum justo venenatis.</p>
   </div>
 
   <hr class="featurette-divider">
 
   <div class="featurette">
     <img class="featurette-image img-circle pull-right" src="http://placehold.it/512">
-    <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Flatness.</span></h2>
-    <p class="lead">A big design trend for 2013 is "flat" design. Gone are the days of excessive gradients and shadows. Designers are producing cleaner flat designs, and Bootstrap 3 takes advantage of this minimalist trend.</p>
+    <h2 class="featurette-heading">Lorem ipsum dolor sit amet. <span class="text-muted">Consectetur adipiscing elit.</span></h2>
+    <p class="lead">Aenean varius purus ac neque rutrum laoreet. Suspendisse potenti. Ut aliquam tortor et volutpat suscipit. Integer sagittis urna at nisl tincidunt, eget rutrum justo venenatis.</p>
   </div>
 
   <hr class="featurette-divider">
@@ -315,8 +339,7 @@ body {
 
   <!-- FOOTER -->
   <footer>
-    <p class="pull-right"><a href="#">Back to top</a></p>
-    <p>This Bootstrap layout is compliments of Bootply. · <a href="http://www.bootply.com/62603">Edit on Bootply.com</a></p>
+    <p>Informacion importante de la USB.</p>
   </footer>
 
 </div><!-- /.container -->
