@@ -1,14 +1,8 @@
-{% comment %}
-  Main page to authenticate users.
-{% endcomment %}
-
-{% block head %}
-  <title>C-Nutra | Iniciar sesión</title>
-{% endblock %}
+{% extends "base.html" %}
 
 {% block body %}
+<div align="center">
   <header>
-    <h1>C-Nutra</h1>
     <h2>Iniciar sesión</h2>
   </header>
 
@@ -35,4 +29,5 @@
       <input type="submit" value="Entrar" />
     </form>
   </section>
+</div>
 {% endblock %}
