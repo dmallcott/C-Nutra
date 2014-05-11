@@ -39,7 +39,9 @@
                 <li><a href="#contact">Contacto</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
-                <li><a id="log_in" class="btn btn-default" href="#">Entrar</a></li>
+                <li>Bienvenido, {{ user.username }}</li>
+                <li><a id="log_in" class="btn btn-default" href="/login/">Registrarse</a></li>
+                <li><a id="log_in" class="btn btn-default" href="/login/">Entrar</a></li>
               </ul>
             </div>
 

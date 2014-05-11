@@ -10,6 +10,11 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='home.html')),
 
+    # Login / logout.
+    (r'^login/$', 'django.contrib.auth.views.login'),
+    #(r'^logout/$', logout_page),
+
+
     # Examples:
     # url(r'^$', 'c_nutra.views.home', name='home'),
     # url(r'^c_nutra/', include('c_nutra.foo.urls')),
