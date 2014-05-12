@@ -8,10 +8,13 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', TemplateView.as_view(template_name='home.html')),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+    url(r'^admin/', include(admin.site.urls)),
 
     # Login / logout.
+    #(r'^register/$', 'django.contrib.auth.views.register'),
     (r'^login/$', 'django.contrib.auth.views.login'),
+    (r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': 'home'}),
     #(r'^logout/$', logout_page),
 
 
@@ -23,7 +26,8 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls))
+    
+
 
 )
 

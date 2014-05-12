@@ -38,11 +38,21 @@
                 <li><a href="#">Recetas</a></li>
                 <li><a href="#contact">Contacto</a></li>
               </ul>
-              <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
-                <li>Bienvenido, {{ user.username }}</li>
-                <li><a id="log_in" class="btn btn-default" href="/login/">Registrarse</a></li>
-                <li><a id="log_in" class="btn btn-default" href="/login/">Entrar</a></li>
-              </ul>
+              {% if user.is_authenticated %}
+                <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
+                  <li class="user_bar"> Bienvenido, {{ user.username }}.</li>
+                  <li class="divider-vertical"></li>
+                  <li class="user_bar"> Mi Perfil</li>
+                  <li class="divider-vertical"></li>
+                  <li><a class="user_bar" href="{% url 'django.contrib.auth.views.logout' %}">Salir</a></li>
+                </ul>
+              {% else %}
+                <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
+                  <li><a class="user_bar" href="#">Registrarse</a></li>
+                  <li class="divider-vertical"></li>
+                  <li><a class="user_bar" href="{% url 'django.contrib.auth.views.login' %}">Entrar</a></li>
+                </ul>
+              {% endif %}
             </div>
 
           </div>

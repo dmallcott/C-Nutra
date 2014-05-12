@@ -1,33 +1,35 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
 
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
+{% endblock %}
 {% block body %}
-<div align="center">
-  <header>
-    <h2>Iniciar sesión</h2>
-  </header>
 
-  <section>
-    {% if form.errors %}
-      <p>Existe un error en tus credenciales, vuelve a intentar.</p>
-    {% endif %}
-
-    <form method="post" action=".">
-      {% csrf_token %}
+<div class="wrapper">
+    
+    <form class="form-signin" method="post" action=".">  
+      {% csrf_token %}     
+      <h2 class="form-signin-heading">Ingrese sus datos</h2>
       <p>
-        <label for="id_username">Username:</label>
-        {{ form.username }}
+        <label for="id_username">Usuario:</label>
+        {{ form.username|attr:"class:form-control" }}
       </p>
       <p>
-        <label for="id_password">Password:</label>
-        {{ form.password }}
+        <label for="id_password">Contraseña:</label>
+        {{ form.password|attr:"class:form-control" }}
       </p>
       {% if next %}
         <input type="hidden" name="next" value="{{ next }}" />
       {% else %}
         <input type="hidden" name="next" value="/" />
       {% endif %}
-      <input type="submit" value="Entrar" />
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>  
     </form>
-  </section>
-</div>
+    {% if form.errors %}
+      <p>Existe un error en tus credenciales, vuelve a intentar.</p>
+    {% endif %}
+  </div>
 {% endblock %}

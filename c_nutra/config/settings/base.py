@@ -183,6 +183,7 @@ DJANGO_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
 
     # Useful template tags:
     # 'django.contrib.humanize',

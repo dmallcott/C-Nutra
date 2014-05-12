@@ -32,15 +32,23 @@
   border-color: white;
 }
 
-#log_in {
+.user_bar {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-top: 5px;
-  color: #2980b9;
+  color: white;
 }
 
-#log_in:hover {
+.user_bar:hover {
   color: white;
   border-color: white;
-  background-color: #bdc3c7;
+}
+
+.divider-vertical {
+  height: 30px;
+  line-height: 20px;  
+  margin: 0;
+  border-right: 1px solid #FFF;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
