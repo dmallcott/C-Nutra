@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     #(r'^logout/$', logout_page),
 
     # Accounts urls
-    url(r'accounts/login/$', 'apps.users.views.user_login', name='login'),
+    url(r'accounts/login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'accounts/logout/$', 'apps.users.views.user_logout', name='logout'),
     url(r'accounts/register/$', 'apps.users.views.user_register', name='register'),
 

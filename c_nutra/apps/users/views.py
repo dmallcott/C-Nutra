@@ -18,11 +18,14 @@ def user_login(request):
                 if user.is_active:
                     #This logs him in
                     login(request, user)
+                    return HttpResponseRedirect('/')
                 else:
                     return HttpResponse("Not active")
             else:
                 return HttpResponse("Wrong username/password")
     return HttpResponseRedirect("/")
+# NO LONGER USING THIS
+
 
 # User Logout View
 def user_logout(request):
