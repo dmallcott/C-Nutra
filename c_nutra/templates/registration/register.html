@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+
+{% block body %}
+<form style="margin-top:80px" method="POST" action="">
+    {% csrf_token %}
+    {{ form }}
+    {{ form.email }}
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}

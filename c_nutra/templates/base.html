@@ -42,13 +42,13 @@
                 <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
                   <li class="user_bar"> Bienvenido, {{ user.username }}.</li>
                   <li class="divider-vertical"></li>
-                  <li class="user_bar"> Mi Perfil</li>
+                  <li><a class="user_bar" href="{% url 'django.contrib.auth.views.logout' %}">Mi Perfil</a></li>
                   <li class="divider-vertical"></li>
                   <li><a class="user_bar" href="{% url 'django.contrib.auth.views.logout' %}">Salir</a></li>
                 </ul>
               {% else %}
                 <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
-                  <li><a class="user_bar" href="#">Registrarse</a></li>
+                  <li><a class="user_bar" href="{% url 'register' %}">Registrarse</a></li>
                   <li class="divider-vertical"></li>
                   <li><a class="user_bar" href="{% url 'django.contrib.auth.views.login' %}">Entrar</a></li>
                 </ul>

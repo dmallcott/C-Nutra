@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import TemplateView
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -12,7 +14,12 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # Login / logout.
-    #(r'^register/$', 'django.contrib.auth.views.register'),
+    #url(r'^register/$', 'apps.users.views.register', name='register'),
+    url('^register/', CreateView.as_view(
+            template_name='registration/register.html',
+            form_class=UserCreationForm,
+            success_url='/'),
+        name='register'),
     (r'^login/$', 'django.contrib.auth.views.login'),
     (r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': 'home'}),
     #(r'^logout/$', logout_page),
