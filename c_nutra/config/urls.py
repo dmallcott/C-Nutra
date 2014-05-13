@@ -15,15 +15,19 @@ urlpatterns = patterns('',
 
     # Login / logout.
     #url(r'^register/$', 'apps.users.views.register', name='register'),
-    url('^register/', CreateView.as_view(
-            template_name='registration/register.html',
-            form_class=UserCreationForm,
-            success_url='/'),
-        name='register'),
-    (r'^login/$', 'django.contrib.auth.views.login'),
-    (r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': 'home'}),
+    #url('^register/', CreateView.as_view(
+    #        template_name='registration/register.html',
+    #       form_class=UserCreationForm,
+    #        success_url='/'),
+    #    name='register'),
+    #(r'^login/$', 'django.contrib.auth.views.login'),
+    #(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': 'home'}),
     #(r'^logout/$', logout_page),
 
+    # Accounts urls
+    url(r'accounts/login/$', 'apps.users.views.user_login', name='login'),
+    url(r'accounts/logout/$', 'apps.users.views.user_logout', name='logout'),
+    url(r'accounts/register/$', 'apps.users.views.user_register', name='register'),
 
     # Examples:
     # url(r'^$', 'c_nutra.views.home', name='home'),

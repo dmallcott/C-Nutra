@@ -253,7 +253,7 @@ SOUTH_TESTS_MIGRATE = False
 ########## END SOUTH CONFIGURATION
 
 # User profile
-AUTH_PROFILE_MODULE = 'apps.users.UserProfile'
+#AUTH_PROFILE_MODULE = 'apps.users.UserProfile'
 
 # URL of the login page.
 LOGIN_URL = '/login/'
