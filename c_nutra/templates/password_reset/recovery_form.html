@@ -1,0 +1,23 @@
+{% extends "password_reset/base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block title %}{% trans "| Recuperación de contraseña" %}{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="wrapper">
+		<form class="form-signin" method="post" action="{{ url }}">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<p><input type="submit" value="{% trans "Recuperar mi contraseña" %}"></p>
+		</form>
+	</div>
+{% endblock %}

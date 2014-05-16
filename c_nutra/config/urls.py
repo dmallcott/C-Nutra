@@ -12,7 +12,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^admin/', include(admin.site.urls)),
-
+    url(r'^password-reset/', include('password_reset.urls')),
     # Login / logout.
     #url(r'^register/$', 'apps.users.views.register', name='register'),
     #url('^register/', CreateView.as_view(

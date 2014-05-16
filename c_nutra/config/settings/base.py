@@ -3,6 +3,7 @@
 
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
+from os import environ
 
 
 ########## PATH CONFIGURATION
@@ -257,3 +258,4 @@ SOUTH_TESTS_MIGRATE = False
 
 # URL of the login page.
 LOGIN_URL = '/login/'
+

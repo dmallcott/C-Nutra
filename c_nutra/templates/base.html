@@ -59,7 +59,13 @@
         </div><!-- /container -->
       </div><!-- /navbar wrapper -->
 
-      {% block body %}{% endblock %}
+      {% block body %}
+
+        {% block content %}
+
+        {% endblock %}
+
+      {% endblock %}
 
     <!-- FOOTER -->
     <footer>
