@@ -1,7 +1,14 @@
-{% extends "password_reset/base.html" %}{% load i18n %}
+{% extends "password_reset/base.html" %}
+{% load i18n %}
 
-{% block title %}{% trans "New password set" %}{% endblock %}
+{% block title %}{% trans "Establece nueva contraseña" %}{% endblock %}
 
 {% block content %}
-	<p>{% trans "Your password has successfully been reset. You can use it right now on the login page." %}</p>
+	<div class="wrapper">
+		<form class="form-resetting" method="post" action="{{ url }}">
+			<p>{% trans "Tu contraseña ha sido cambiada con éxito. Puedes ahora acceder al sistema." %}</p>
+		<p><a class="btn btn-lg btn-primary btn-block" href="{% url 'login' %}">
+		Entrar</a></p>
+		</form>
+	</div>
 {% endblock %}

@@ -1,13 +1,21 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+
 <!DOCTYPE html>
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css'%}">
+{% endblock %}
+
+
 <body>
       {% block body %}
 
         {% block content %}
 
         {% endblock %}
-
-        
 
       {% endblock %}
 
