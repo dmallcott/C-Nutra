@@ -3,14 +3,14 @@
   margin-bottom: 80px;
 }
 
-.form-resetting {
-  max-width: 395px;
+.form-registering {
+  max-width: 285px;
   padding: 15px 35px 45px;
   margin: 0 auto;
   background-color: #fff;
   border: 1px solid rgba(0,0,0,0.1);  
 
-  .form-resetting-heading,
+  .form-registering-heading,
 	.checkbox {
 	  margin-bottom: 30px;
 	}
@@ -29,6 +29,3 @@
 
 }
 
-#new-pass {
-	max-width: 355px;
-}

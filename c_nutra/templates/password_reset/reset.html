@@ -2,14 +2,14 @@
 
 {% block content %}
 	<div class="wrapper">
-		<form class="form-resetting" method="post" action="{% url "password_reset_reset" token %}">
+		<form id="new-pass" class="form-resetting" method="post" action="{% url "password_reset_reset" token %}">
 			{% if invalid %}{% url "password_reset_recover" as recovery_url %}
 				<p>{% blocktrans %}Lo sentimos, este enlace no es válido para recuperar tu contraseña. Puedes <a href="{{ recovery_url }}">solicitar uno nuevo</a>.{% endblocktrans %}</p>
 			{% else %}
 				<p>{% blocktrans %}Hola, <strong>{{ username }}</strong>. Por favor elige tu nueva contraseña.{% endblocktrans %}</p>
 				{% csrf_token %}
 				{{ form.as_p }}
-				<p><button class="btn btn-lg btn-primary btn-block" type="submit">Establece nueva contraseña</button></p>
+				<p><button class="btn btn-lg btn-primary btn-block" type="submit">Cambiar contraseña</button></p>
 			{% endif %}
 		</form>
 	</div>
