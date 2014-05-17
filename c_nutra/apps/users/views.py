@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 
 #Import a user registration form
 from apps.users.forms import UserRegisterForm
+from apps.users.models import UserProfile
 
 # User Login View
 def user_login(request):
@@ -49,3 +50,9 @@ def user_register(request):
         return render_to_response('registration/register.html', context)
     else:
         return HttpResponseRedirect('/')
+
+# 
+def user_profile(request):
+    email = request.GET['user.email']
+    UserProfile.objects.get(email=email)
+    return render_to_response('profile/profile.html', context)
