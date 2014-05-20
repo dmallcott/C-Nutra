@@ -2,31 +2,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response
+from django.contrib.auth.decorators import login_required
 
 #Import a user registration form
 from apps.users.forms import UserRegisterForm
 from apps.users.models import UserProfile
 
-# User Login View
-def user_login(request):
-    if request.user.is_anonymous():
-        if request.method == 'POST':
-            username = request.POST['username']
-            password = request.POST['password']
-            #This authenticates the user
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                if user.is_active:
-                    #This logs him in
-                    login(request, user)
-                    request.session['user'] = user
-                    return HttpResponseRedirect('/')
-                else:
-                    return HttpResponse("Not active")
-            else:
-                return HttpResponse("Wrong username/password")
-    return HttpResponseRedirect("/")
-# NO LONGER USING THIS
+from django.contrib.auth.middleware import get_user
+
 
 
 # User Logout View
@@ -53,8 +36,10 @@ def user_register(request):
         return HttpResponseRedirect('/')
 
 # 
+@login_required
 def user_profile(request):
     profile = request.user.get_profile()
+    user = get_user(request)
     #user = request.POSt['user']
     #context = {'user': user}
-    return render_to_response('profile/profile.html',{'profile':profile})
+    return render_to_response('profile/profile.html',{'profile':profile, 'user':user})
