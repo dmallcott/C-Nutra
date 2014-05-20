@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     url(r'accounts/login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'accounts/logout/$', 'apps.users.views.user_logout', name='logout'),
     url(r'accounts/register/$', 'apps.users.views.user_register', name='register'),
+    url(r'accounts/profile/$', 'apps.users.views.user_profile', name='profile'),
 
     # Examples:
     # url(r'^$', 'c_nutra.views.home', name='home'),

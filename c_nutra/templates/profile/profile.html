@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
+{% endblock %}
+{% block body %}
+	{{ user }}
+	{{ profile }}
+
+{% endblock %}

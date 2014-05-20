@@ -19,6 +19,7 @@ def user_login(request):
                 if user.is_active:
                     #This logs him in
                     login(request, user)
+                    request.session['user'] = user
                     return HttpResponseRedirect('/')
                 else:
                     return HttpResponse("Not active")
@@ -53,6 +54,7 @@ def user_register(request):
 
 # 
 def user_profile(request):
-    email = request.GET['user.email']
-    UserProfile.objects.get(email=email)
-    return render_to_response('profile/profile.html', context)
+    profile = request.user.get_profile()
+    #user = request.POSt['user']
+    #context = {'user': user}
+    return render_to_response('profile/profile.html',{'profile':profile})
