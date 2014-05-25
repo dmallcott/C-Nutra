@@ -1,0 +1,11 @@
+.fa-15 {
+	font-size:1.2em;
+}
+
+.new_field, #submit	 {
+	display: none;
+}
+
+.list-group-item-heading a {
+	cursor: pointer;
+}

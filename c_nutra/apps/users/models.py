@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from datetime import date
 
-class UserProfile(models.Model):  
-
+class UserProfile(models.Model):
 	user = models.OneToOneField(User)  
 	#other fields here
-	age = models.IntegerField()
+	birthday = models.DateField(default=date.today)
 	gender = models.CharField(max_length=1, choices=(('M', 'Male'), ('F', 'Female')))
 	height = models.IntegerField()
 	weight = models.IntegerField()

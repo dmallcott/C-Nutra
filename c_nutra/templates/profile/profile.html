@@ -4,9 +4,135 @@
 <!DOCTYPE html>
 
 {% block head %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css'%}">
 {% endblock %}
 {% block body %}
-	{{ profile }}
+	<div class="wrapper" style="padding: 50px 5%;">
+		<div class="page-header">
+		  <h1>Mi Perfil <small>{{ profile.user.username }}</small></h1>
+		</div>
 
+		<div class="row" style="margin: 0">
+			<div class="list-group col-md-5">
+				<div class="list-group-item active">
+					<h4 class="list-group-item-heading">Usuario
+					</h4>
+				</div>
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">Username
+					</h4>
+					<p class="list-group-item-text">{{ profile.user.username }}</p>
+				</div>
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">Email</h4>
+					<p class="list-group-item-text">
+						{{ user.email}}
+					</p>
+				</div>
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">Nombre
+					</h4>
+					<p class="list-group-item-text">
+						{{ user.name }}
+					</p>
+				</div>
+			</div>
+			<form action="." method="post" class="list-group col-md-5 col-md-offset-1">
+				{% csrf_token %}
+				<div class="list-group-item active">
+					<h4 class="list-group-item-heading">Perfil
+					</h4>
+				</div>
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">Fecha de Nacimiento 
+						<a id="edit_date" style="float:right">
+							<i class="fa fa-fw fa-15 fa-pencil-square-o"></i>
+						</a>
+					</h4>
+					<p id="date" class="list-group-item-text">{{ profile.birthday }}</p>
+					<input id="new_date" type="date" class="form-control new_field" placeholder="Ingrese fecha">
+				</div>
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">Genero
+					<a id="edit_gender" style="float:right">
+							<i class="fa fa-fw fa-15 fa-pencil-square-o"></i>
+						</a>
+					</h4>
+					<p id="gender" class="list-group-item-text">
+						{% if profile.gender == 'M' %}
+							Masculino
+						{% elif profile.gender == 'F' %}
+							Femenino
+						{% endif %}
+					</p>
+					<input id="new_gender" name="gender" value="Masculino" type="radio" class="form-control new_field">
+				</div>
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">Altura
+						<a id="edit_height" style="float:right">
+							<i class="fa fa-fw fa-15 fa-pencil-square-o"></i>
+						</a>
+					</h4>
+					<p id="height" class="list-group-item-text">
+						{{ profile.height }}
+					</p>
+					<input id="new_height" type="number" min="1" class="form-control new_field" placeholder="Ingrese su altura en cm">
+				</div>
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">Peso
+						<a id="edit_weight" style="float:right">
+							<i class="fa fa-fw fa-15 fa-pencil-square-o"></i>
+						</a>
+					</h4>
+					<p id="weight" class="list-group-item-text">
+						{{ profile.weight }}
+					</p>
+					<input id="new_weight" type="number" min="1" class="form-control new_field" placeholder="Ingrese su peso en kg">
+				</div>
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">Diametro del Codo
+						<a id="edit_elbow" style="float:right">
+							<i class="fa fa-fw fa-15 fa-pencil-square-o"></i>
+						</a>
+					</h4>
+					<p id="elbow" class="list-group-item-text">
+						{{ profile.elbow_diameter }}
+					</p>
+					<input id="new_elbow" type="number" min="1" class="form-control new_field" placeholder="Ingrese el diametro de su codo en cm">
+				</div>
+				<div id="submit" class="list-group-item text-center">
+					<button class="btn btn-danger" onclick="window.location.reload();">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Aceptar</button>
+				</div>
+		</form>
+	</div>
+	
+
+{% endblock %}
+
+{% block scripts %}
+	<script>
+	$("#edit_date").on('click', function() {
+		$('#date').hide();
+   		$("#new_date").show();
+   		$('#submit').show();
+	});
+	$("#edit_gender").on('click', function() {
+		$('#gender').hide();
+   		$("#new_gender").show();
+	});
+	$("#edit_height").on('click', function() {
+		$('#height').hide();
+   		$("#new_height").show();
+	});
+	$("#edit_weight").on('click', function() {
+		$('#weight').hide();
+   		$("#new_weight").show();
+	});
+	$("#edit_elbow").on('click', function() {
+		$('#elbow').hide();
+   		$("#new_elbow").show();
+	});
+
+	</script>
 {% endblock %}
