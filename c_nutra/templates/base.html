@@ -40,18 +40,47 @@
               </ul>
               {% if user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
-                  <li class="user_bar"> Bienvenido, {{ user.username }}.</li>
-                  <li class="divider-vertical"></li>
-                  <li><a class="user_bar" href="{% url 'logout' %}">Mi Perfil</a></li>
-                  <li class="divider-vertical"></li>
-                  <li><a class="user_bar" href="{% url 'logout' %}">Salir</a></li>
-                </ul>
-              {% else %}
-                <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
-                  <li><a class="user_bar" href="{% url 'register' %}">Registrarse</a></li>
-                  <li class="divider-vertical"></li>
-                  <li><a class="user_bar" href="{% url 'login' %}">Entrar</a></li>
-                </ul>
+
+                    <li class="user_bar"> Bienvenido, {{ user.username }} </li>
+
+                    <li class="user_bar">
+                      <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="color: white;">
+
+                          <span class="caret"></span>
+                        </a>
+            
+                        <ul class="dropdown-menu" style="top: 127%">
+                          <!-- dropdown menu links -->
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'logout' %}">Mi Perfil</a></li>
+                          <li class="divider"></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'logout' %}">Salir</a></li>
+                        </ul>
+                      </div>
+                    </li>
+
+                    </ul>
+                  {% else %}
+                    <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
+
+                      <li class="user_bar"> Ingresar </li>
+
+                      <li class="user_bar">
+                        <div class="btn-group">
+                          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="color: white;">
+                            <!--Ingresa-->
+                            <span class="caret"></span>
+                          </a>
+            
+                          <ul class="dropdown-menu" style="top: 127%">
+                            <!-- dropdown menu links -->
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'register' %}">Registrarse</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'login' %}">Login</a></li>
+                          </ul>
+                        </div>
+                      </li>
+
+                    </ul>
               {% endif %}
             </div>
 

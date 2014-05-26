@@ -1,3 +1,9 @@
+.square {
+    background-color: red;
+    height: 10px;
+    width: 10px;
+}
+
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
   position: absolute;
@@ -5,6 +11,13 @@
   left: 0;
   right: 0;
   z-index: 10;
+  margin-top: 20px;
+  margin-bottom: -90px;
+}
+
+/* The navbar becomes detached from the top, so we round the corners */
+.navbar-wrapper .navbar {
+  border-radius: 4px;
 }
 
 .navbar-inverse {
@@ -33,10 +46,16 @@
 }
 
 .user_bar {
+/*
   padding-top: 10px;
   padding-bottom: 10px;
   margin-top: 5px;
+*/
+  /* para centrar es mejor usar line-height en vez de padding. */
+  line-height: 48px;
   color: white;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .user_bar:hover {
