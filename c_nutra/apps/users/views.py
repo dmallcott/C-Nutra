@@ -3,10 +3,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
 
 #Import a user registration form
 from apps.users.forms import UserRegisterForm
-from apps.users.models import UserProfile
+from apps.users.models import UserProfile, UserProfileForm
 
 from django.contrib.auth.middleware import get_user
 
@@ -38,8 +39,18 @@ def user_register(request):
 # 
 @login_required
 def user_profile(request):
-    profile = request.user.get_profile()
-    user = get_user(request)
-    #user = request.POSt['user']
-    #context = {'user': user}
-    return render_to_response('profile/profile.html',{'profile':profile, 'user':user})
+    if request.method == 'POST':
+        user = get_user(request)
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            height = form.cleaned_data.get('height', 'default1')
+            UserProfile.objects.filter(user=user).update(height=height)
+            return HttpResponseRedirect('/')
+
+    else:
+        profile = request.user.get_profile()
+        edited_profile = UserProfileForm
+        user = get_user(request)
+        #user = request.POSt['user']
+        #context = {'user': user}
+        return render_to_response('profile/profile.html',{'profile':profile, 'edited_profile':edited_profile}, context_instance=RequestContext(request))

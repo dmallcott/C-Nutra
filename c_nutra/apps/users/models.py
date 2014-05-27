@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from datetime import date
+from django.contrib.admin import widgets
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)  
@@ -25,7 +26,9 @@ class UserForm(forms.ModelForm):
 	class Meta:
 		model = User  
 
-class UserProfileForm(forms.ModelForm):
-	class Meta:
-		model = UserProfile
-		exclude = ['user']
+class UserProfileForm(forms.Form):
+	birthday = forms.DateField(required=False, widget=widgets.AdminDateWidget())
+	gender = forms.CharField(required=False, widget=forms.Select(choices=(('M', 'Masculino'), ('F', 'Femenino'))))
+	height = forms.IntegerField(required=False)
+	weight = forms.IntegerField(required=False)
+	elbow_diameter = forms.IntegerField(required=False)
