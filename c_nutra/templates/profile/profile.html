@@ -5,30 +5,7 @@
 
 {% block head %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css'%}">
-  <link rel="stylesheet" type="text/css"
-    href="{% static 'admin/css/forms.css' %} "/>
-<link rel="stylesheet" type="text/css"
-    href="{% static 'admin/css/base.css' %} "/>
-<link rel="stylesheet" type="text/css"
-    href="{% static 'admin/css/global.css' %}"/>
-<link rel="stylesheet" type="text/css"
-    href="{% static 'admin/css/widgets.css' %}"/>
-    <script type="text/javascript"
-    src="/admin/jsi18n/"></script>
-<script type="text/javascript"
-    src="{% static 'admin/js/core.js' %}"></script>
-<script type="text/javascript"
-    src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
-<script type="text/javascript"
-    src="{% static 'admin/js/jquery.js' %}"></script>
-<script type="text/javascript"
-    src="{% static 'admin/js/jquery.init.js' %}"></script>
-<script type="text/javascript"
-    src="{% static 'admin/js/actions.js' %}"></script>
-<script type="text/javascript"
-    src="{% static 'admin/js/calendar.js' %}"></script>
-<script type="text/javascript"
-    src="{% static 'admin/js/admin/DateTimeShortcuts.js' %}"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 {% endblock %}
 {% block body %}
 	<div class="wrapper" style="padding: 50px 5%;">
@@ -125,6 +102,17 @@
 					</p>
 					{{ edited_profile.elbow_diameter|attr:"class:form-control new_field" }}
 				</div>
+				{% if messages %}
+				<div class="messages list-group-item">
+				    {% for message in messages %}
+						{% if message.level == 40 %}
+				    		<p><i class="fa fa-exclamation" style="color: red"></i>  {{ message }}</p>
+			    		{% else %}
+			    			<p><i class="fa fa-check" style="color: green"></i>  {{ message }}</p>
+			    		{% endif %}
+				    {% endfor %}
+				</div>
+				{% endif %}
 				<div id="submit" class="list-group-item text-center">
 					<button class="btn btn-danger" onclick="window.location.reload();">Cancelar</button>
 					<button type="submit" class="btn btn-primary">Aceptar</button>
@@ -139,12 +127,13 @@
 	<script>
 	$("#edit_date").on('click', function() {
 		$('#date').hide();
-   		$("#id_date").show();
+   		$("#id_birthday").show();
    		$('#submit').show();
 	});
 	$("#edit_gender").on('click', function() {
 		$('#gender').hide();
    		$("#id_gender").show();
+   		$('#submit').show();
 	});
 	$("#edit_height").on('click', function() {
 		$('#height').hide();
@@ -163,4 +152,12 @@
 	});
 
 	</script>
+	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<script>
+	  $(function() {
+	    $( "#id_birthday" ).datepicker({
+				dateFormat: "dd-mm-yy"});
+	  });
+
+  </script>
 {% endblock %}

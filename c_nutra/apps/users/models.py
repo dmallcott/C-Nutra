@@ -4,13 +4,12 @@ from django.db.models.signals import post_save
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from datetime import date
-from django.contrib.admin import widgets
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)  
 	#other fields here
 	birthday = models.DateField(default=date.today)
-	gender = models.CharField(max_length=1, choices=(('M', 'Male'), ('F', 'Female')))
+	gender = models.CharField(max_length=1, choices=(('M', 'Masculino'), ('F', 'Femenino')))
 	height = models.IntegerField()
 	weight = models.IntegerField()
 	elbow_diameter = models.IntegerField()
@@ -27,7 +26,8 @@ class UserForm(forms.ModelForm):
 		model = User  
 
 class UserProfileForm(forms.Form):
-	birthday = forms.DateField(required=False, widget=widgets.AdminDateWidget())
+	birthday = forms.DateField(required=False, input_formats=["%d-%m-%Y"], 
+		error_messages={'required': u'Este campo es requerido', 'invalid': u'El formato de la fecha es dd-mm-yyyy'})
 	gender = forms.CharField(required=False, widget=forms.Select(choices=(('M', 'Masculino'), ('F', 'Femenino'))))
 	height = forms.IntegerField(required=False)
 	weight = forms.IntegerField(required=False)

@@ -10,6 +10,8 @@ from apps.users.forms import UserRegisterForm
 from apps.users.models import UserProfile, UserProfileForm
 
 from django.contrib.auth.middleware import get_user
+from django.shortcuts import render
+from django.contrib import messages
 
 
 
@@ -43,14 +45,33 @@ def user_profile(request):
         user = get_user(request)
         form = UserProfileForm(request.POST)
         if form.is_valid():
-            height = form.cleaned_data.get('height', 'default1')
-            UserProfile.objects.filter(user=user).update(height=height)
-            return HttpResponseRedirect('/')
+            birthday = form.cleaned_data.get('birthday')
+            gender = form.cleaned_data.get('gender')
+            height = form.cleaned_data.get('height')
+            weight = form.cleaned_data.get('weight')
+            elbow_diameter = form.cleaned_data.get('elbow_diameter')
+            if birthday:
+                UserProfile.objects.filter(user=user).update(birthday=birthday)
+            if gender:
+                UserProfile.objects.filter(user=user).update(gender=gender)
+            if height:
+                UserProfile.objects.filter(user=user).update(height=height)
+            if weight:
+                UserProfile.objects.filter(user=user).update(weight=weight)
+            if elbow_diameter:
+                UserProfile.objects.filter(user=user).update(elbow_diameter=elbow_diameter)
+            messages.add_message(request, messages.SUCCESS, 'Perfil actualizado correctamente.')
+            return HttpResponseRedirect('/accounts/profile/')
+        else:
+            profile = request.user.get_profile()
+            edited_profile = UserProfileForm
+            for field in form:
+                for error in field.errors:
+                    messages.add_message(request, messages.ERROR, error)
+            return render(request, 'profile/profile.html',{'profile':profile, 'edited_profile':edited_profile})
 
     else:
         profile = request.user.get_profile()
         edited_profile = UserProfileForm
         user = get_user(request)
-        #user = request.POSt['user']
-        #context = {'user': user}
-        return render_to_response('profile/profile.html',{'profile':profile, 'edited_profile':edited_profile}, context_instance=RequestContext(request))
+        return render(request, 'profile/profile.html',{'profile':profile, 'edited_profile':edited_profile})
