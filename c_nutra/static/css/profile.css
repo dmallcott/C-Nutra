@@ -2,7 +2,7 @@
 	font-size:1.2em;
 }
 
-.new_field, #submit	 {
+.new_field, #submit_user, #submit_profile	 {
 	display: none;
 }
 

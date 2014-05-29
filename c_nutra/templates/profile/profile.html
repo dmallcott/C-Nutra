@@ -10,37 +10,71 @@
 {% block body %}
 	<div class="wrapper" style="padding: 50px 5%;">
 		<div class="page-header">
-		  <h1>Mi Perfil <small>{{ profile.user.username }}</small></h1>
+		  <h1>Mi Perfil <small>{{ user.username }}</small></h1>
 		</div>
 
 		<div class="row" style="margin: 0">
-			<div class="list-group col-md-5">
+			<form action="." method="POST" class="list-group col-md-5">
+				{% csrf_token %}
 				<div class="list-group-item active">
-					<h4 class="list-group-item-heading">Usuario
-					</h4>
+					<h4 class="list-group-item-heading">Usuario</h4>
 				</div>
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">Username
+						<a id="edit_username" style="float:right">
+							<i class="fa fa-fw fa-15 fa-pencil-square-o"></i>
+						</a>
 					</h4>
-					<p class="list-group-item-text">{{ profile.user.username }}</p>
+					<p id="username" class="list-group-item-text">{{ user.username }}</p>
+					{{ form_user.username|attr:"class:form-control new_field" }}
 				</div>
 				<div class="list-group-item">
-					<h4 class="list-group-item-heading">Email</h4>
-					<p class="list-group-item-text">
-						{{ user.email}}
-					</p>
+					<h4 class="list-group-item-heading">Email
+						<a id="edit_email" style="float:right">
+							<i class="fa fa-fw fa-15 fa-pencil-square-o"></i>
+						</a>
+					</h4>
+					<p id="email" class="list-group-item-text">{{ user.email }}</p>
+					{{ form_user.email|attr:"class:form-control new_field" }}
 				</div>
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">Nombre
+						<a id="edit_first_name" style="float:right">
+							<i class="fa fa-fw fa-15 fa-pencil-square-o"></i>
+						</a>
 					</h4>
-					<p class="list-group-item-text">
-						{{ user.name }}
-					</p>
+					<p id="first_name" class="list-group-item-text">{{ user.first_name }}</p>
+					{{ form_user.first_name|attr:"class:form-control new_field" }}
 				</div>
-			</div>
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading">Apellido
+						<a id="edit_last_name" style="float:right">
+							<i class="fa fa-fw fa-15 fa-pencil-square-o"></i>
+						</a>
+					</h4>
+					<p id="last_name" class="list-group-item-text">{{ user.last_name }}</p>
+					{{ form_user.last_name|attr:"class:form-control new_field" }}
+				</div>
+				{% if messages and not profile_messages %}
+				<div class="messages list-group-item">
+				    {% for message in messages %}
+						{% if message.level == 40 %}
+				    		<p><i class="fa fa-exclamation" style="color: red"></i>  {{ message }}</p>
+			    		{% else %}
+			    			<p><i class="fa fa-check" style="color: green"></i>  {{ message }}</p>
+			    		{% endif %}
+				    {% endfor %}
+				</div>
+				{% endif %}
+				<div id="submit_user" class="list-group-item text-center">
+					<input type="hidden" name="user-form"/>
+					<button class="btn btn-danger" onclick="window.location.reload();">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Aceptar</button>
+				</div>
+			</form>
+
 			<form action="." method="POST" class="list-group col-md-5 col-md-offset-1">
 				{% csrf_token %}
-				
 				<div class="list-group-item active">
 					<h4 class="list-group-item-heading">Perfil
 					</h4>
@@ -52,7 +86,7 @@
 						</a>
 					</h4>
 					<p id="date" class="list-group-item-text">{{ profile.birthday }}</p>
-					{{ edited_profile.birthday|attr:"class:form-control new_field" }}
+					{{ form_profile.birthday|attr:"class:form-control new_field" }}
 				</div>
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">Genero
@@ -67,7 +101,7 @@
 							Femenino
 						{% endif %}
 					</p>
-					{{ edited_profile.gender|attr:"class:form-control new_field" }}
+					{{ form_profile.gender|attr:"class:form-control new_field" }}
 				</div>
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">Altura
@@ -78,7 +112,7 @@
 					<p id="height" class="list-group-item-text">
 						{{ profile.height }}
 					</p>
-					{{ edited_profile.height|attr:"class:form-control new_field" }}
+					{{ form_profile.height|attr:"class:form-control new_field" }}
 				</div>
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">Peso
@@ -89,7 +123,7 @@
 					<p id="weight" class="list-group-item-text">
 						{{ profile.weight }}
 					</p>
-					{{ edited_profile.weight|attr:"class:form-control new_field" }}
+					{{ form_profile.weight|attr:"class:form-control new_field" }}
 				</div>
 				<div class="list-group-item">
 					<h4 class="list-group-item-heading">Diametro del Codo
@@ -100,9 +134,9 @@
 					<p id="elbow" class="list-group-item-text">
 						{{ profile.elbow_diameter }}
 					</p>
-					{{ edited_profile.elbow_diameter|attr:"class:form-control new_field" }}
+					{{ form_profile.elbow_diameter|attr:"class:form-control new_field" }}
 				</div>
-				{% if messages %}
+				{% if messages and profile_messages %}
 				<div class="messages list-group-item">
 				    {% for message in messages %}
 						{% if message.level == 40 %}
@@ -113,7 +147,8 @@
 				    {% endfor %}
 				</div>
 				{% endif %}
-				<div id="submit" class="list-group-item text-center">
+				<div id="submit_profile" class="list-group-item text-center">
+					<input type="hidden" name="profile-form"/>
 					<button class="btn btn-danger" onclick="window.location.reload();">Cancelar</button>
 					<button type="submit" class="btn btn-primary">Aceptar</button>
 				</div>
@@ -125,32 +160,53 @@
 
 {% block scripts %}
 	<script>
-	$("#edit_date").on('click', function() {
-		$('#date').hide();
-   		$("#id_birthday").show();
-   		$('#submit').show();
-	});
-	$("#edit_gender").on('click', function() {
-		$('#gender').hide();
-   		$("#id_gender").show();
-   		$('#submit').show();
-	});
-	$("#edit_height").on('click', function() {
-		$('#height').hide();
-   		$("#id_height").show();
-   		$('#submit').show();
-	});
-	$("#edit_weight").on('click', function() {
-		$('#weight').hide();
-   		$("#id_weight").show();
-   		$('#submit').show();
-	});
-	$("#edit_elbow").on('click', function() {
-		$('#elbow').hide();
-   		$("#id_elbow_diameter").show();
-   		$('#submit').show();
-	});
-
+		$("#edit_username").on('click', function() {
+			$('#username').hide();
+	   		$("#id_username").show();
+	   		$('#submit_user').show();
+		});
+		$("#edit_email").on('click', function() {
+			$('#gender').hide();
+	   		$("#id_email").show();
+	   		$('#submit_user').show();
+		});
+		$("#edit_first_name").on('click', function() {
+			$('#height').hide();
+	   		$("#id_first_name").show();
+	   		$('#submit_user').show();
+		});
+		$("#edit_last_name").on('click', function() {
+			$('#weight').hide();
+	   		$("#id_last_name").show();
+	   		$('#submit_user').show();
+		});
+	</script>
+	<script>
+		$("#edit_date").on('click', function() {
+			$('#date').hide();
+	   		$("#id_birthday").show();
+	   		$('#submit_profile').show();
+		});
+		$("#edit_gender").on('click', function() {
+			$('#gender').hide();
+	   		$("#id_gender").show();
+	   		$('#submit_profile').show();
+		});
+		$("#edit_height").on('click', function() {
+			$('#height').hide();
+	   		$("#id_height").show();
+	   		$('#submit_profile').show();
+		});
+		$("#edit_weight").on('click', function() {
+			$('#weight').hide();
+	   		$("#id_weight").show();
+	   		$('#submit_profile').show();
+		});
+		$("#edit_elbow").on('click', function() {
+			$('#elbow').hide();
+	   		$("#id_elbow_diameter").show();
+	   		$('#submit_profile').show();
+		});
 	</script>
 	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 	<script>

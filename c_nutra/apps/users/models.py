@@ -21,14 +21,21 @@ class UserProfile(models.Model):
 		if created:  
 			profile, created = UserProfile.objects.get_or_create(user=instance)  
 
-class UserForm(forms.ModelForm):
-	class Meta:
-		model = User  
+class UserForm(forms.Form):
+	username = forms.CharField(required=False)
+	email = forms.EmailField(required=False,
+		error_messages={'invalid': u'Formato incorrecto de email.'})
+	first_name = forms.CharField(required=False)
+	last_name = forms.CharField(required=False)
+
 
 class UserProfileForm(forms.Form):
 	birthday = forms.DateField(required=False, input_formats=["%d-%m-%Y"], 
-		error_messages={'required': u'Este campo es requerido', 'invalid': u'El formato de la fecha es dd-mm-yyyy'})
+		error_messages={'invalid': u'El formato de la fecha es dd-mm-yyyy.'})
 	gender = forms.CharField(required=False, widget=forms.Select(choices=(('M', 'Masculino'), ('F', 'Femenino'))))
-	height = forms.IntegerField(required=False)
-	weight = forms.IntegerField(required=False)
-	elbow_diameter = forms.IntegerField(required=False)
+	height = forms.IntegerField(required=False, min_value=1,
+		error_messages={'invalid': u'Esto no pasa con html5.', 'min_value': u'La altura no puede ser negativa.'})
+	weight = forms.IntegerField(required=False, min_value=1,
+		error_messages={'invalid': u'Esto no pasa con html5.', 'min_value': u'El peso no puede ser negativo.'})
+	elbow_diameter = forms.IntegerField(required=False, min_value=1,
+		error_messages={'invalid': u'Esto no pasa con html5.', 'min_value': u'El diametro del codo no puede ser negativo.'})
