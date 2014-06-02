@@ -51,6 +51,7 @@ CACHES = {
 # See: http://django-debug-toolbar.readthedocs.org/en/latest/installation.html#explicit-setup
 INSTALLED_APPS += (
     'debug_toolbar',
+    'password_reset'
 )
 
 MIDDLEWARE_CLASSES += (

@@ -13,6 +13,8 @@ body {
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   z-index: 10;
+  text-shadow: -1px 1px black;
+
 }
 
 /* Declare heights because of positioning of img element */

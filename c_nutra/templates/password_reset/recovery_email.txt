@@ -1,0 +1,9 @@
+{% load i18n %}{% load url from future %}{% blocktrans %}Querido {{ username }},{% endblocktrans %}
+
+{% blocktrans with domain=site.domain %}Tu -- o alguien haciéndose pasar por ti -- ha solicitado una recuperación de contraseña para el dominio {{ domain }}.{% endblocktrans %}
+
+{% trans "Puedes establecer tu nueva contraseña siguiendo este enlace:" %}
+
+http{% if secure %}s{% endif %}://{{ site.domain }}{% url "password_reset_reset" token %}
+
+{% trans "Si no deseas recuperar tu contraseña, simplemente ignora este correo electrónico y tu clave permanecerá igual." %}

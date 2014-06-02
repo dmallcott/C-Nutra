@@ -3,11 +3,25 @@
 {% load widget_tweaks %}
 <!DOCTYPE html>
 
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/register.css'%}">
+{% endblock %}
+
 {% block body %}
-<form action="/accounts/register/" method="POST"> {% csrf_token %}
-<h2>Please enter your details . . .</h2>
-    {{ form.as_p }}
-<input type="submit" value="Sign Up">
-</form>
+
+
+{% block content %}
+	<div class="wrapper">
+		<form class="form-registering" action="/accounts/register/" method="POST"> 
+			{% csrf_token %}
+			<h2>Por favor introduce tu información</h2>
+			    {{ form.as_p }}
+
+				<p><button class="btn btn-lg btn-primary btn-block" type="submit">Regístrate
+
+				</button></p>
+		</form>
+	</div>
+{% endblock %}
 
 {% endblock %}

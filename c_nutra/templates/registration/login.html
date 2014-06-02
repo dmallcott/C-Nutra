@@ -6,8 +6,8 @@
 {% block head %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
 {% endblock %}
-{% block body %}
 
+{% block body %}
 <div class="wrapper">
     
     <form class="form-signin" method="post" action=".">  
@@ -26,10 +26,14 @@
       {% else %}
         <input type="hidden" name="next" value="/" />
       {% endif %}
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>  
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button> 
+      <a style="text-decoration:none" href="{% url 'password_reset_recover' %}">
+      Recuperar contraseña</a>
     </form>
     {% if form.errors %}
       <p>Existe un error en tus credenciales, vuelve a intentar.</p>
     {% endif %}
+
+
   </div>
 {% endblock %}
