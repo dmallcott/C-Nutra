@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^password-reset/', include('password_reset.urls')),
+
     # Login / logout.
     #url(r'^register/$', 'apps.users.views.register', name='register'),
     #url('^register/', CreateView.as_view(
@@ -29,6 +30,9 @@ urlpatterns = patterns('',
     url(r'accounts/logout/$', 'apps.users.views.user_logout', name='logout'),
     url(r'accounts/register/$', 'apps.users.views.user_register', name='register'),
     url(r'accounts/profile/$', 'apps.users.views.user_profile', name='profile'),
+
+    # Surveys urls
+    url(r'^surveys/', include('apps.surveys.urls', namespace="surveys")),
 
     # Examples:
     # url(r'^$', 'c_nutra.views.home', name='home'),
