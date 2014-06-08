@@ -3,17 +3,16 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-import settings
+#import settings
 
 admin.autodiscover()
-media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
+#media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
 
 urlpatterns = patterns('',
 	# Examples:
 	url(r'^$', 'apps.surveys.views.Index', name='survey_index'),
-#	url(r'^survey/(?P<id>\d+)/$', 'apps.surveys.views.SurveyDetail', name='survey_detail'),
-#	url(r'^confirm/(?P<uuid>\w+)/$', 'apps.surveys.views.Confirm', name='confirmation'),
-#	url(r'^privacy/$', 'apps.surveys.views.privacy', name='privacy_statement'),
+	url(r'^survey/(?P<id>\d+)/$', 'apps.surveys.views.SurveyDetail', name='survey_detail'),
+	url(r'^confirm/(?P<uuid>\w+)/$', 'apps.surveys.views.Confirm', name='confirmation'),
 
 
 	# Uncomment the admin/doc line below to enable admin documentation:
@@ -24,8 +23,8 @@ urlpatterns = patterns('',
 )
 
 # media url hackery. le sigh. 
-urlpatterns += patterns('',
-    (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
-     { 'document_root': settings.MEDIA_ROOT, 'show_indexes':True }),
-)
+#urlpatterns += patterns('',
+#    (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
+#     { 'document_root': settings.MEDIA_ROOT, 'show_indexes':True }),
+#)
 

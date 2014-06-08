@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.core import urlresolvers
 from django.contrib import messages
 import datetime
-import settings
+#import settings
 
 from models import Question, Survey, Category
 from forms import ResponseForm
@@ -29,13 +29,9 @@ def SurveyDetail(request, id):
 		form = ResponseForm(survey=survey)
 		print form
 		# TODO sort by category
-	return render(request, 'survey.html', {'response_form': form, 'survey': survey, 'categories': categories})
+	return render(request, 'surveys/survey.html', {'response_form': form, 'survey': survey, 'categories': categories})
 
 def Confirm(request, uuid):
 	email = settings.support_email
 	return render(request, 'confirm.html', {'uuid':uuid, "email": email})
-
-def privacy(request):
-	return render(request, 'privacy.html')
-
 
