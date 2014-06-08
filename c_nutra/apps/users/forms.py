@@ -1,13 +1,14 @@
 from django import forms
 from django.contrib.auth.models import User
 
+# Will be deprecated with django-registration
 class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-
+# User's personal information form
 class UserForm(forms.Form):
     username = forms.CharField(required=False)
     email = forms.EmailField(
@@ -19,7 +20,7 @@ class UserForm(forms.Form):
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)
 
-
+# User's profile form
 class UserProfileForm(forms.Form):
     birthday = forms.DateField(
         required=False,
