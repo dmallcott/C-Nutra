@@ -16,8 +16,10 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.messages import get_messages
 
-
+# This will be deprecated for django-registration - 06/06/2014
 # User Register View
+
+
 def user_register(request):
     if request.user.is_anonymous():
         if request.method == 'POST':
@@ -36,12 +38,15 @@ def user_register(request):
     else:
         return HttpResponseRedirect('/')
 
+# User Profile View
 @login_required
 def user_profile(request):
     if request.method == 'POST':
         user = get_user(request)
+        # The user-form atribute in the request represents changes were made to the user information
         if "user-form" in request.POST:
             form = UserForm(request.POST)
+            # The form is evaluated and if valid its updated
             if form.is_valid():
                 username = form.cleaned_data.get('username')
                 email = form.cleaned_data.get('email')
@@ -56,16 +61,20 @@ def user_profile(request):
                         first_name=first_name)
                 if last_name:
                     User.objects.filter(id=user.id).update(last_name=last_name)
+                # A message is added so the user knows his information was updated
                 messages.add_message(
-                    request, messages.SUCCESS, 
-                    'Perfil actualizado correctamente.', 
+                    request, messages.SUCCESS,
+                    'Perfil actualizado correctamente.',
                     extra_tags={'user': 'user'})
+            # If there is an error with the inputs a message is added with the errors
             else:
                 for field in form:
                     for error in field.errors:
                         messages.add_message(request, messages.ERROR, error)
+        # The profile-form atribute in the request represents changes were made to the user profile
         elif "profile-form" in request.POST:
             form = UserProfileForm(request.POST)
+            # The form is evaluated and if valid its updated
             if form.is_valid():
                 birthday = form.cleaned_data.get('birthday')
                 gender = form.cleaned_data.get('gender')
@@ -84,37 +93,39 @@ def user_profile(request):
                 if elbow_diameter:
                     UserProfile.objects.filter(user=user).update(
                         elbow_diameter=elbow_diameter)
-
+                # A message is added so the user knows his profile was updated
                 messages.add_message(
-                    request, messages.SUCCESS, 
-                    'Perfil actualizado correctamente.', 
+                    request, messages.SUCCESS,
+                    'Perfil actualizado correctamente.',
                     extra_tags=('profile'))
+            # If there is an error with the inputs a message is added with the errors
             else:
                 for field in form:
                     for error in field.errors:
                         messages.add_message(
-                            request, messages.ERROR, 
-                            error, 
+                            request, messages.ERROR,
+                            error,
                             extra_tags=('profile'))
-
+        # User is redirected to the profile page
         return HttpResponseRedirect('/accounts/profile/')
-
     else:
+        # The user profile is obtained and two empy forms for user information and profile are created
         profile = request.user.get_profile()
         form_user = UserForm
         form_profile = UserProfileForm
+        # Possible previous messages are collected, processed and added to the context 
         messages_temp = get_messages(request)
         profile_messages = False
         for message in messages_temp:
             if 'profile' in message.tags:
                 profile_messages = True
         return render(
-            request, 
+            request,
             'profile/profile.html',
             {
-                'profile': profile, 
-                'form_profile': form_profile, 
-                'form_user': form_user, 
+                'profile': profile,
+                'form_profile': form_profile,
+                'form_user': form_user,
                 'profile_messages': profile_messages
             }
         )
