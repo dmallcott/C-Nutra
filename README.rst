@@ -2,4 +2,6 @@
 C-Nutra
 ========================
 
-Due to my levels of tiredness this readme will be updated ASAP with actual information.
+Nutritional Survey System for the Nutrition Laboratory of Simón Bolívar University.
+
+Developed by Devlabs USB.
