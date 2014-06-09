@@ -10,17 +10,22 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^password-reset/', include('password_reset.urls')),
-
-    # Accounts urls
-    url(r'accounts/login/$', 'django.contrib.auth.views.login', name='login'),
-    url(r'accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page':'home'}, name='logout'),
-    url(r'accounts/register/$', 'apps.users.views.user_register', name='register'),
-    url(r'accounts/profile/$', 'apps.users.views.user_profile', name='profile'),
-    
-)
+                       url(r'^$', TemplateView.as_view(
+                           template_name='home.html'), name='home'),
+                       url(r'^admin/', include(admin.site.urls)),
+                       url(r'^password-reset/', include(
+                           'password_reset.urls')),
+                       
+                       # Accounts urls
+                       url(r'accounts/login/$',
+                           'django.contrib.auth.views.login', name='login'),
+                       url(r'accounts/logout/$', 'django.contrib.auth.views.logout',
+                           {'next_page': 'home'}, name='logout'),
+                       url(r'accounts/register/$',
+                           'apps.users.views.user_register', name='register'),
+                       url(r'accounts/profile/$',
+                           'apps.users.views.user_profile', name='profile'),
+                       )
 
 # Uncomment the next line to serve media files in dev.
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

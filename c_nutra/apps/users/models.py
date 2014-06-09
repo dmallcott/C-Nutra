@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import date
 
 # User Profile Model
 class UserProfile(models.Model):
@@ -24,3 +25,9 @@ class UserProfile(models.Model):
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             profile, created = UserProfile.objects.get_or_create(user=instance)
+
+    # Given the date of birth it calculates the age
+    def calculate_age(self):
+        today = date.today()
+        born = self.birthday
+        return today.year - born.year - ((today.month, today.day) < (born.month, born.day))

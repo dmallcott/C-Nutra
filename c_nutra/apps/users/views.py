@@ -7,7 +7,7 @@ from django.template import RequestContext
 
 # Import a user registration form
 from apps.users.forms import UserRegisterForm
-from apps.users.models import UserProfile,
+from apps.users.models import UserProfile
 from apps.users.forms import UserProfileForm, UserForm
 from django.contrib.auth.models import User
 
