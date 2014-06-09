@@ -109,11 +109,3 @@ class AnswerSelectMultiple(AnswerBase):
 
 class AnswerInteger(AnswerBase):
 	body = models.IntegerField(blank=True, null=True)
-
-
-
-
-
-
-
-

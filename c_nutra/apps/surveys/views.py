@@ -5,14 +5,17 @@ from django.template import RequestContext
 from django.core import urlresolvers
 from django.contrib import messages
 import datetime
-#import settings
+import settings
 
 from models import Question, Survey, Category
 from forms import ResponseForm
 
 
-def Index(request):
-	return render(request, 'surveys/index.html')
+def Index(request): 
+        survey_list = Survey.objects.all()
+        context = {'survey_list': survey_list}
+        return render(request, 'surveys/index.html', context)
+
 
 def SurveyDetail(request, id):
 	survey = Survey.objects.get(id=id)
@@ -24,7 +27,8 @@ def SurveyDetail(request, id):
 		form = ResponseForm(request.POST, survey=survey)
 		if form.is_valid():
 			response = form.save()
-			return HttpResponseRedirect("/confirm/%s" % response.interview_uuid)
+                        return HttpResponseRedirect("/surveys/")
+			#return HttpResponseRedirect("/surveys/confirm/%s" % response.interview_uuid)
 	else:
 		form = ResponseForm(survey=survey)
 		print form
@@ -32,6 +36,7 @@ def SurveyDetail(request, id):
 	return render(request, 'surveys/survey.html', {'response_form': form, 'survey': survey, 'categories': categories})
 
 def Confirm(request, uuid):
-	email = settings.support_email
-	return render(request, 'confirm.html', {'uuid':uuid, "email": email})
+        email = "micafe.go@gmail.com"
+	#email = settings.support_email
+	return render(request, 'surveys/confirm.html', {'uuid':uuid, "email": email})
 

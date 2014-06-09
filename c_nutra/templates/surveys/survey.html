@@ -3,15 +3,16 @@
 
 {% block body %}
 
-<h1>Welcome to {{survey.name|title}}</h1>
+<div id="survey-wrapper" style="margin-top: 100px; margin-left: 30px;">
+
+<h1>{{survey.name|title}}</h1>
 <div class="survey-description">
 	{{survey.description|safe}}
 </div>
 
 <div>
-	<form action="/survey/{{survey.id}}/" method="post">{% csrf_token %}
+	<form action="{% url 'surveys:survey_detail' survey.id %}" method="post">{% csrf_token %}
 
-		<h3 class="collapsible" id="response_metadata">Response Metadata<span></span></h3>
 		<div class="category-container">
 
 		<div class="field-wrapper question-required">
@@ -79,8 +80,10 @@
 		{% endfor %}
 		</ol>
 
-		<div class="submit-button"><input type="submit" value="I'm done!"></div>
+		<div class="submit-button"><input type="submit" value="Calcular Resultados"></div>
 	</form>
+
+</div>
 
 </div>
 
