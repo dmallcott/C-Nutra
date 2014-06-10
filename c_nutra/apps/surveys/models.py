@@ -5,6 +5,10 @@ class Survey(models.Model):
 	name = models.CharField(max_length=400)
 	description = models.TextField()
 
+	class Meta:
+		verbose_name = "Encuesta"
+		verbose_name_plural = "Encuestas"
+
 	def __unicode__(self):
 		return (self.name)
 
@@ -15,11 +19,15 @@ class Survey(models.Model):
 			return None
 
 class Category(models.Model):
-	name = models.CharField(max_length=400)
+	name = models.CharField(max_length=400, verbose_name="Nombre")
 	survey = models.ForeignKey(Survey)
 
 	def __unicode__(self):
 		return (self.name)
+
+	class Meta:
+		verbose_name = "Categoria"
+		verbose_name_plural = "Categorias"
 
 def validate_list(value):
 	'''takes a text value and verifies that there is at least one comma '''
@@ -28,6 +36,11 @@ def validate_list(value):
 		raise ValidationError("The selected field requires an associated list of choices. Choices must contain more than one item.")
 
 class Question(models.Model):
+
+	class Meta:
+		verbose_name = "Pregunta"
+		verbose_name_plural = "Preguntas"	
+
 	TEXT = 'text'
 	RADIO = 'radio'
 	SELECT = 'select'

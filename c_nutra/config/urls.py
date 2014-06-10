@@ -30,7 +30,7 @@ urlpatterns = patterns('',
     url(r'accounts/logout/$', 'apps.users.views.user_logout', name='logout'),
     url(r'accounts/register/$', 'apps.users.views.user_register', name='register'),
     url(r'accounts/profile/$', 'apps.users.views.user_profile', name='profile'),
-    url(r'encuestas/$',TemplateView.as_view(template_name='surveys/surveys.html'), name='surveys')
+    url(r'encuestas/$',TemplateView.as_view(template_name='surveys/surveys.html'), name='surveys'),
 
     # Surveys urls
     url(r'^surveys/', include('apps.surveys.urls', namespace="surveys")),
