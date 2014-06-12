@@ -39,11 +39,14 @@ def user_register(request):
         return HttpResponseRedirect('/')
 
 # User Profile View
+
+
 @login_required
 def user_profile(request):
     if request.method == 'POST':
         user = get_user(request)
-        # The user-form atribute in the request represents changes were made to the user information
+        # The user-form atribute in the request represents changes were made to
+        # the user information
         if "user-form" in request.POST:
             form = UserForm(request.POST)
             # The form is evaluated and if valid its updated
@@ -61,17 +64,20 @@ def user_profile(request):
                         first_name=first_name)
                 if last_name:
                     User.objects.filter(id=user.id).update(last_name=last_name)
-                # A message is added so the user knows his information was updated
+                # A message is added so the user knows his information was
+                # updated
                 messages.add_message(
                     request, messages.SUCCESS,
                     'Perfil actualizado correctamente.',
                     extra_tags={'user': 'user'})
-            # If there is an error with the inputs a message is added with the errors
+            # If there is an error with the inputs a message is added with the
+            # errors
             else:
                 for field in form:
                     for error in field.errors:
                         messages.add_message(request, messages.ERROR, error)
-        # The profile-form atribute in the request represents changes were made to the user profile
+        # The profile-form atribute in the request represents changes were made
+        # to the user profile
         elif "profile-form" in request.POST:
             form = UserProfileForm(request.POST)
             # The form is evaluated and if valid its updated
@@ -98,7 +104,8 @@ def user_profile(request):
                     request, messages.SUCCESS,
                     'Perfil actualizado correctamente.',
                     extra_tags=('profile'))
-            # If there is an error with the inputs a message is added with the errors
+            # If there is an error with the inputs a message is added with the
+            # errors
             else:
                 for field in form:
                     for error in field.errors:
@@ -109,11 +116,13 @@ def user_profile(request):
         # User is redirected to the profile page
         return HttpResponseRedirect('/accounts/profile/')
     else:
-        # The user profile is obtained and two empy forms for user information and profile are created
+        # The user profile is obtained and two empy forms for user information
+        # and profile are created
         profile = request.user.get_profile()
         form_user = UserForm
         form_profile = UserProfileForm
-        # Possible previous messages are collected, processed and added to the context 
+        # Possible previous messages are collected, processed and added to the
+        # context
         messages_temp = get_messages(request)
         profile_messages = False
         for message in messages_temp:
@@ -129,3 +138,10 @@ def user_profile(request):
                 'profile_messages': profile_messages
             }
         )
+
+# User Physical Stats View
+
+
+@login_required
+def user_stats(request):
+    user
