@@ -144,4 +144,13 @@ def user_profile(request):
 
 @login_required
 def user_stats(request):
-    user
+    # The user profile is obtained and two empy forms for user information
+    # and profile are created
+    profile = request.user.get_profile()
+    return render(
+        request,
+        'profile/stats.html',
+        {
+            'profile': profile
+        }
+    )

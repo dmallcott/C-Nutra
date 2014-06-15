@@ -1,6 +1,8 @@
+from __future__ import division
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
+
 
 # User Profile Model
 
@@ -9,7 +11,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(
         User, verbose_name="the user who's profile this is")
     birthday = models.DateField(
-        auto_now=True, verbose_name='the date of birth')
+        auto_now=False, verbose_name='the date of birth')
     gender = models.CharField(
         max_length=1,
         choices=(
@@ -52,14 +54,16 @@ class UserProfile(models.Model):
     def calculate_bmi(self):
         height = self.height / 100  # Height must be in meters
         weight = self.weight
-        return weight / height ** 2
+        # Result is rounded up to one decimal
+        return "%.1f" % float(weight / height ** 2)
 
     # Given the user's height and weight it calculates the daily energy
     # expenditure (calories)
     def calculate_dem(self):
         # First the basal metamolic rate must be obtained
         # The Mifflin St Jeor Equation will be used for this
-        bmr = 10 * self.weight + 6.25 * self.height - 5 * self.calculate_age
+        bmr = 10 * self.weight + 6.25 * self.height - 5 * self.calculate_age()
+
         if self.gender == 'F':
             bmr -= 161
         else:
@@ -75,5 +79,8 @@ class UserProfile(models.Model):
             dem = 1.725 * bmr
         elif self.activity_level == 'EE':
             dem = 1.9 * bmr
-
-        return dem
+        else:
+            # TO-DO: raise an exception here
+            dem = -1
+        # Result is rounded up to an integer
+        return int(dem)

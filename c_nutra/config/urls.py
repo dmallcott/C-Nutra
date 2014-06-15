@@ -15,7 +15,7 @@ urlpatterns = patterns('',
                        url(r'^admin/', include(admin.site.urls)),
                        url(r'^password-reset/', include(
                            'password_reset.urls')),
-                       
+
                        # Accounts urls
                        url(r'accounts/login/$',
                            'django.contrib.auth.views.login', name='login'),
@@ -25,13 +25,16 @@ urlpatterns = patterns('',
                            'apps.users.views.user_register', name='register'),
                        url(r'accounts/profile/$',
                            'apps.users.views.user_profile', name='profile'),
+                       url(r'accounts/stats/$',
+                           'apps.users.views.user_stats', name='stats'),
                        )
+
 
 # Uncomment the next line to serve media files in dev.
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns += patterns('',
-                            url(r'^__debug__/', include(debug_toolbar.urls)),
-                            )
+# if settings.DEBUG:
+#     import debug_toolbar
+#     urlpatterns += patterns('',
+#                             url(r'^__debug__/', include(debug_toolbar.urls)),
+#                             )
