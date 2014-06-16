@@ -11,26 +11,36 @@
 	<div class="page-header">
 		<h1>Mis Valores <small>{{ user.username }}</small></h1>
 	</div>
-</div>
+
 <div class="row" style="margin: 0">
-	<div class="col-md-5 col-md-offset-1">
-		<h2>Su indice de masa corporal es {{ profile.calculate_bmi }}</h2> 
-		<p>aqui iran los ifs que diran si eres gordo o no!</p>
+	<div class="col-md-6">
+		<h2>Su indice de masa corporal es {{ bmi }}</h2> 
+		{% if bmi < 18.5 %}
+			<p>Usted esta por debajo del peso esperado en una persona de sus proporciones.</p>
+		{% elif 18.5 <= bmi < 25 %}
+			<p>Usted esta en rango del peso esperado en una persona de sus proporciones.</p>
+		{% elif 25 <= bmi < 30 %}
+			<p>Usted esta por encima del peso esperado en una persona de sus proporciones.</p>
+		{% elif 30 <= bmi %}
+			<p>Usted esta por muy por encima del peso esperado en una persona de sus proporciones.</p>
+		{% endif %}
 	</div>
 	<div class="col-md-6">
-		<h2>Que significa esto?</h2>
-		<p>El indice normal </p>
+		<h2>Nota</h2>
+		<p>El IMC es un índice o valor que permite establecer si se está en un peso saludable, con bajo peso, sobrepeso o se sufre de obesidad en funcion de su peso y altura.</p>
+		<p>Esta medida no es perfecta ya que sólo depende de la altura y el peso, no teniendo en cuenta los niveles de adiposidad diferentes según la edad, la actividad física y el sexo.</p>
 	</div>
 </div>
 <hr style="padding: 0 5%;">
 <div class="row" style="margin: 0">
-	<div class="col-md-5 col-md-offset-1">
-		<h2>Su requerimiento calorico diario es {{ profile.calculate_dem }}</h2> 
-		<p>blah blah something</p>
+	<div class="col-md-6">
+		<h2>Su requerimiento calorico diario es {{ dem }}</h2>
 	</div>
 	<div class="col-md-6">
-		<h2>Que significa esto?</h2>
-		<p>El indice normal </p>
+		<h2>Nota</h2>
+		<p>Para una determinacion mas acertada es necesario llevar a cabo examenes fisiologicos individuales.</p>
+		<p>Un nutricionista podra ayudarlo para estos examenes.</p>
+	</div>
 	</div>
 	</div>
 {% endblock %}

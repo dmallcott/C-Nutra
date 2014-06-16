@@ -147,10 +147,13 @@ def user_stats(request):
     # The user profile is obtained and two empy forms for user information
     # and profile are created
     profile = request.user.get_profile()
+    bmi = profile.calculate_bmi
+    dem = profile.calculate_dem
     return render(
         request,
         'profile/stats.html',
         {
-            'profile': profile
+            'bmi': bmi,
+            'dem': dem
         }
     )
