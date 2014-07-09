@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -6,13 +7,16 @@ from django.contrib.auth.forms import UserCreationForm
 from datetime import date
 
 class UserProfile(models.Model):
-	user = models.OneToOneField(User)  
+	user = models.OneToOneField(User, name="Usuario")  
 	#other fields here
-	birthday = models.DateField(default=date.today)
-	gender = models.CharField(max_length=1, choices=(('M', 'Masculino'), ('F', 'Femenino')))
-	height = models.IntegerField()
-	weight = models.IntegerField()
-	elbow_diameter = models.IntegerField()
+	birthday = models.DateField("Cumpleaños", default=date.today)
+	gender = models.CharField("Género", max_length=1, choices=(('M', 'Masculino'), ('F', 'Femenino')))
+	height = models.IntegerField("Altura")
+	weight = models.IntegerField("Peso")
+
+	class Meta:
+		verbose_name = ('Usuario')
+		verbose_name_plural = ('Usuarios')		
 
 	def __str__(self):  
 		return "%s's profile" % self.user  
@@ -37,5 +41,3 @@ class UserProfileForm(forms.Form):
 		error_messages={'invalid': u'Esto no pasa con html5.', 'min_value': u'La altura no puede ser negativa.'})
 	weight = forms.IntegerField(required=False, min_value=1,
 		error_messages={'invalid': u'Esto no pasa con html5.', 'min_value': u'El peso no puede ser negativo.'})
-	elbow_diameter = forms.IntegerField(required=False, min_value=1,
-		error_messages={'invalid': u'Esto no pasa con html5.', 'min_value': u'El diametro del codo no puede ser negativo.'})
