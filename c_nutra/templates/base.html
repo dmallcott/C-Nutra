@@ -19,7 +19,7 @@
     </head>
     <body>
       <div class="navbar-wrapper">
-        <div class="container">
+        <div style="padding: 0 5%;">
           <div class="navbar navbar-inverse navbar-static-top">
 
             <div class="navbar-header">
@@ -43,38 +43,45 @@
                 <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
                     <li class="user_bar"> Bienvenido, {{ user.username }} </li>
                   <li class="user_bar">
-                    <div class="btn-group">
-                      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="color: white;">
-                        <i class="fa fa-caret-down" style="color: white;"></i>
-                      </a>
-                      <ul class="dropdown-menu" style="top: 127%">
-                        <!-- dropdown menu links -->
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'profile' %}">Mi Perfil</a></li>
-                        <li class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'logout' %}">Salir</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
+                      <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" style="color: white;">
 
-              {% else %}
+                          <span class="caret"></span>
+                        </a>
+            
+                        <ul class="dropdown-menu" style="top: 127%">
+                          <!-- dropdown menu links -->
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'profile' %}">Mi Perfil</a></li>
+                          <li class="divider"></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'stats' %}">Mis valores</a></li>
+                          <li class="divider"></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'logout' %}">Salir</a></li>
+                        </ul>
+                      </div>
+                    </li>
 
-                <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
-                  <li class="user_bar"> Ingresar </li>
-                  <li class="user_bar">
-                    <div class="btn-group">
-                      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-caret-down" style="color: white;"></i>
-                      </a>
-                      <ul class="dropdown-menu" style="top: 127%">
-                        <!-- dropdown menu links -->
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'register' %}">Registrarse</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'login' %}">Autenticarse</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
+                    </ul>
+                  {% else %}
+                    <ul class="nav navbar-nav navbar-right " style="margin-right:0;">
 
+                      <li class="user_bar"> Ingresar </li>
+
+                      <li class="user_bar">
+                        <div class="btn-group">
+                          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            <!--Ingresa-->
+                            <i class="fa fa-caret-down" style="color: white;"></i>
+                          </a>
+            
+                          <ul class="dropdown-menu" style="top: 127%">
+                            <!-- dropdown menu links -->
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'register' %}">Registrarse</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'login' %}">Login</a></li>
+                          </ul>
+                        </div>
+                      </li>
+
+                    </ul>
               {% endif %}
 
             </div>
@@ -104,19 +111,14 @@
   <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 
-
-
-
-
-  <!-- JavaScript jQuery code from Bootply.com editor -->
-
   <script type='text/javascript'>
       $(document).ready(function() {
            $('.carousel').carousel({
                interval: 5000
            })
       });    
+      </script>
   {% block scripts %}{% endblock %}
-  </script>
+  
 </body>
 </html>
