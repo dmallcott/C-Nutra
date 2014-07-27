@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+{% block body %}
+
+<div id="survey_list-wrapper" style="margin-top: 100px;">
+
+  {% if survey_list %}
+
+    <ul>
+      {% for survey in survey_list %}
+        <li><a href="{% url 'surveys:survey_detail' survey.id %}">{{ survey.name }}</a></li>
+      {% endfor %}
+    </ul>
+
+  {% else %}
+
+    <p> No hay encuestas disponibles. </p>
+
+  {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import division
 from django.db import models
 from django.contrib.auth.models import User
@@ -6,25 +7,41 @@ from datetime import date
 
 # User Profile Model
 
-
 class UserProfile(models.Model):
     user = models.OneToOneField(
-        User, verbose_name="the user who's profile this is")
+        User,
+        # name="Usuario",
+        verbose_name="the user who's profile this is"
+    )
     birthday = models.DateField(
-        auto_now=False, verbose_name='the date of birth')
+        # name="Cumpleanos",
+        verbose_name='the date of birth',
+        auto_now=False
+    )
     gender = models.CharField(
+        # name="Genero",
+        verbose_name="the user's gender",
         max_length=1,
         choices=(
             ('M', 'Masculino'),
             ('F', 'Femenino')
-        ),
-        verbose_name="the user's gender"
+        )
     )
-    height = models.IntegerField(verbose_name="the user's height")
-    weight = models.IntegerField(verbose_name="the user's weight")
+    height = models.IntegerField(
+        # name="Altura",
+        verbose_name="the user's height"
+    )
+    weight = models.IntegerField(
+        # name="Peso",
+        verbose_name="the user's weight"
+    )
     elbow_diameter = models.IntegerField(
-        verbose_name="the user's elbow diameter")
+        #name="Diametro del codo",
+        verbose_name="the user's elbow diameter"
+    )
     activity_level = models.CharField(
+        #name="Nivel de actividad",
+        verbose_name="the user's activity levels",
         max_length=2,
         choices=(
             ('EN', 'Sedentario'),
@@ -32,12 +49,15 @@ class UserProfile(models.Model):
             ('EM', 'Ejercicio moderado'),
             ('EF', 'Ejercicio fuerte'),
             ('EE', 'Ejercicio extreno')
-        ),
-        verbose_name="the user's activity levels"
+        )
     )
 
-    def __unicode__(self):
-        return u'Perfil de %s' % self.user
+    class Meta:
+        verbose_name = ('Perfil')
+        verbose_name_plural = ('Perfiles')
+
+    def __str__(self):
+        return 'Perfil de %s' % self.user
 
     # Will be deprecated with django-registration
     def create_user_profile(sender, instance, created, **kwargs):

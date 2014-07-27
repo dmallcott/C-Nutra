@@ -27,8 +27,11 @@ urlpatterns = patterns('',
                            'apps.users.views.user_profile', name='profile'),
                        url(r'accounts/stats/$',
                            'apps.users.views.user_stats', name='stats'),
-                       )
 
+                       # Surveys urls
+                       url(r'^surveys/', include(
+                           'apps.surveys.urls', namespace="surveys")),
+                       )
 
 # Uncomment the next line to serve media files in dev.
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
