@@ -8,23 +8,15 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'UserProfile'
-        db.create_table(u'users_userprofile', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
-            ('birthday', self.gf('django.db.models.fields.DateField')()),
-            ('gender', self.gf('django.db.models.fields.CharField')(max_length=1)),
-            ('height', self.gf('django.db.models.fields.IntegerField')()),
-            ('weight', self.gf('django.db.models.fields.IntegerField')()),
-            ('elbow_diameter', self.gf('django.db.models.fields.IntegerField')()),
-            ('activity_level', self.gf('django.db.models.fields.CharField')(max_length=2)),
-        ))
-        db.send_create_signal(u'users', ['UserProfile'])
+        # Adding field 'UserProfile.activity_level'
+        db.add_column(u'users_userprofile', 'activity_level',
+                      self.gf('django.db.models.fields.CharField')(default='EN', max_length=2),
+                      keep_default=False)
 
 
     def backwards(self, orm):
-        # Deleting model 'UserProfile'
-        db.delete_table(u'users_userprofile')
+        # Deleting field 'UserProfile.activity_level'
+        db.delete_column(u'users_userprofile', 'activity_level')
 
 
     models = {

@@ -1,31 +1,19 @@
 # -*- coding: utf-8 -*-
 import datetime
 from south.db import db
-from south.v2 import SchemaMigration
+from south.v2 import DataMigration
 from django.db import models
 
-
-class Migration(SchemaMigration):
+class Migration(DataMigration):
 
     def forwards(self, orm):
-        # Adding model 'UserProfile'
-        db.create_table(u'users_userprofile', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
-            ('birthday', self.gf('django.db.models.fields.DateField')()),
-            ('gender', self.gf('django.db.models.fields.CharField')(max_length=1)),
-            ('height', self.gf('django.db.models.fields.IntegerField')()),
-            ('weight', self.gf('django.db.models.fields.IntegerField')()),
-            ('elbow_diameter', self.gf('django.db.models.fields.IntegerField')()),
-            ('activity_level', self.gf('django.db.models.fields.CharField')(max_length=2)),
-        ))
-        db.send_create_signal(u'users', ['UserProfile'])
-
+        "Write your forwards methods here."
+        # Note: Don't use "from appname.models import ModelName". 
+        # Use orm.ModelName to refer to models in this application,
+        # and orm['appname.ModelName'] for models in other applications.
 
     def backwards(self, orm):
-        # Deleting model 'UserProfile'
-        db.delete_table(u'users_userprofile')
-
+        "Write your backwards methods here."
 
     models = {
         u'auth.group': {
@@ -78,3 +66,4 @@ class Migration(SchemaMigration):
     }
 
     complete_apps = ['users']
+    symmetrical = True
