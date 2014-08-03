@@ -7,53 +7,41 @@
 
 
 {% block body %}
-<!-- Carousel
-  ================================================== -->
-  <div id="myCarousel" class="carousel slide">
+<center>
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
     </ol>
+
+    <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="{% static '../../static/img/home/ca1.png' %}" class="img-responsive">
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Bienvenido a C-Nutra</h1>
-              <p>Sistema de encuestas </p>
-              </pthis></div>
-            </div>
-          </div>
-          <div class="item">
-            <img src="{% static '../../static/img/home/ca2.png' %}" class="img-responsive">
-            <div class="container">
-              <div class="carousel-caption">
-              <h1>Bienvenido a C-Nutra</h1>
-                <p>Sistema de encuestas </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <img src="{% static '../../static/img/home/ca3.png' %}" class="img-responsive">
-            <div class="container">
-              <div class="carousel-caption">
-              <h1>Bienvenido a C-Nutra</h1>
-                <p>Sistema de encuestas </p>
-              </div>
-            </div>
-          </div>
+        <img src="{% static '/assets/img/home/ca1.png' %}" alt="...">
+        <div class="carousel-caption">
+          ...
         </div>
-        <!-- Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="icon-next"></span>
-        </a>  
       </div>
-      <!-- /.carousel -->
+      <div class="item">
+        <img src="{% static '/assets/img/home/ca2.png' %}" alt="...">
+        <div class="carousel-caption">
+          ...
+        </div>
+      </div>
+      ...
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div>
+</center>
 
 
 <!-- Marketing messaging and featurettes
@@ -65,24 +53,24 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
       <div class="col-md-3 text-center">
-        <img class="img-circle" src="../../static/img/home/f1.png">
+        <img class="img-circle" src="/assets/img/home/f1.png">
         <h2>Alimentos</h2>
         <p>Aquí encontraraś informacion sobre los valores nutricionales 
         de diversos alimentos de consumo común.</p>
       </div>
       <div class="col-md-3 text-center">
-        <img class="img-circle" src="../../static/img/home/p.png">
+        <a href="{% url 'surveys:survey_index' %}"><img  class="img-circle" src="/assets/img/home/p.png"></a>
         <h2>Encuestas</h2>
         <p>Completa estas encuestas para saber mas sobre como comer mejor y llevar
         una vida maś saludable.</p>
       </div>
       <div  class="col-md-3 text-center">
-        <img href="/" class="img-circle" src="../../static/img/home/c.png">
+        <img href="/" class="img-circle" src="/assets/img/home/c.png">
         <h2>Recetas</h2>
         <p>Descubre nuevos platos de sencilla preparación para variar tu menú.</p>
       </div>
       <div  class="col-md-3 text-center">
-        <img href="/" class="img-circle" src="../../static/img/home/c2.png">
+        <img href="/" class="img-circle" src="/assets/img/home/c2.png">
         <h2>Herramientas</h2>
         <p>Calcula tu índice de masa corporal, estima tu requerimiento nutricional y más.</p>
       </div>      

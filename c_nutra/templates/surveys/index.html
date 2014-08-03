@@ -4,23 +4,26 @@
 <!DOCTYPE html>
 
 {% block body %}
+<div class="sub-container">
+	<div id="survey_list-wrapper" style="margin-top: 100px;">
+		<h1>Encuestas</h1>
 
-<div id="survey_list-wrapper" style="margin-top: 100px;">
+		{% if survey_list %}
 
-  {% if survey_list %}
+	    <ul class="list-unstyled">
+	      {% for survey in survey_list %}
+	        <li ><a href="{% url 'surveys:survey_detail' survey.id %}" class="survey-name">
+	        {{ survey.name }}</a></li>
+	      {% endfor %}
+	    </ul>
 
-    <ul>
-      {% for survey in survey_list %}
-        <li><a href="{% url 'surveys:survey_detail' survey.id %}">{{ survey.name }}</a></li>
-      {% endfor %}
-    </ul>
+	  {% else %}
 
-  {% else %}
+	    <p> No hay encuestas disponibles. </p>
 
-    <p> No hay encuestas disponibles. </p>
+	  {% endif %}
 
-  {% endif %}
-
-</div>
+	</div>
+</div>	
 
 {% endblock %}
