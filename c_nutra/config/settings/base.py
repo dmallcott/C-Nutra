@@ -185,6 +185,7 @@ DJANGO_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'grappelli',
 
     # Useful template tags:
     # 'django.contrib.humanize',
@@ -260,3 +261,4 @@ SOUTH_TESTS_MIGRATE = False
 # URL of the login page.
 LOGIN_URL = '/login/'
 
+GRAPPELLI_ADMIN_TITLE = 'Sistema de Encuestas C-NUTRA'
