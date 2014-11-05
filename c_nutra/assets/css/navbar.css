@@ -11,13 +11,11 @@
   left: 0;
   right: 0;
   z-index: 10;
-  margin-top: 20px;
   margin-bottom: -90px;
 }
 
 /* The navbar becomes detached from the top, so we round the corners */
 .navbar-wrapper .navbar {
-  border-radius: 4px;
 }
 
 .navbar-inverse {

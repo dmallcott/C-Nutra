@@ -1,3 +1,13 @@
 .survey-name {
 	font-size: 32px
 }
+
+
+#survey-wrapper {
+	width: 100%;
+	text-align: center;
+}
+
+.field-wrapper  {
+	font-size: 18px
+}

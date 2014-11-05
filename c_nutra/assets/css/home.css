@@ -3,6 +3,11 @@ body {
   color: #5a5a5a;
 }
 
+
+.img-circle {
+  border-radius: 10%
+}
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -101,7 +106,6 @@ body {
 
   /* Navbar positioning foo */
   .navbar-wrapper {
-    margin-top: 20px;
     margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
   }
   /* The navbar becomes detached from the top, so we round the corners */
